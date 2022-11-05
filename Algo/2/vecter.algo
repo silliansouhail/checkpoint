@@ -1,0 +1,41 @@
+FUNCTION dot_product(a1,b1,a2,b2:INTEGER) : INTEGER
+VAR
+    c : INTEGER;
+BEGIN
+    c:= (a1*b2)-(b1*a2);
+    RETURN c ;
+END
+
+ALGORITHM vector
+VAR
+    vec : ARRAY_OF INTEGER[30][2];
+    n,i,j,k,x1,y1,x2,y2,ps : INTEGER;
+BEGIN
+    Write("enter the number of vector") ;
+    Read(n) ;
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        j:= 0;
+        WHILE (j<1) DO
+            Write("enter the x vector n°"i) ;
+            Read(vec[i][j]);
+            Write("enter the y vector n°"i) ;
+            Read(vec[i][j+1]);
+            j:=j+2
+        END_WHILE
+    END_FOR
+
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        j:= 0;
+        x1:= vec[i][j];
+        y1:= vec[i][j+1];
+        FOR k FROM 0 TO n-1 STEP 1  DO
+            j:= 0;
+            x2:= vec[k][j];
+            y2:= vec[k][j+1];
+            sp:= dot_product(x1,y1,x2,y2) ;
+            IF (sp = 0) THEN
+                Write("vector"i"and vector"k"are two orthogonal vectors")
+            END_IF
+        END_FOR
+    END_FOR
+END

@@ -1,0 +1,41 @@
+FUNCTION inser_sort(tab: ARRAY_OF INTEGER) : ARRAY_OF INTEGER
+VAR
+    r_tab :ARRAY_OF INTEGER ;
+    n,i,j,k :INTEGER;
+BEGIN
+    n:= tab.length;
+    FOR i FROM 1 TO n-2 STEP 1  DO
+        k:= tab[i] ;
+        j:= i-1 ;
+        WHILE (j>=0 and tab[j]>k) DO
+            tab[j+1] := tab[j] ;
+            j:=j-1;
+        END_WHILE
+        tab[j+1]:= k ;
+    END_FOR
+    r_tab:=tab ;
+    RETURN r_tab ;
+END
+
+ALGORITHM Card_Sort
+VAR
+    h_card : ARRAY_OF INTEGER [52];
+    i,j,n : INTEGER;
+BEGIN
+    Write("Enter the number of card in your hand");
+    Read(n);
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Write("Enter the card n°"i+1)
+        Read(h_card[i])
+    END_FOR
+    h_card:= inser_sort(h_card)
+    Write("your hand after the sorting" h_card);
+    j:= 0
+    WHILE (j<10) DO
+        n=n+1
+        Write("Enter the new card");
+        Read(h_card[n])
+        h_card:=inser_sort(h_card);
+        Write("your hand after the add of the new card" h_card)
+    END_WHILE
+END
